@@ -8,6 +8,10 @@ use App\Models\Posty;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index','show']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -103,11 +107,12 @@ class PostController extends Controller
     public function update(PostStoreRequest $request, $id)
     {
         $post = Posty::findOrFail($id);
-        $post->tytul = request('tytul');
+        /* $post->tytul = request('tytul');
         $post->autor = request('autor');
         $post->email = request('email');
         $post->tresc = request('tresc');
-        $post->save();
+        $post->update(); */
+        $post->update(request()->all());
         return redirect()->route('posty.index')->with('message', 'Post został uaktualniony');
     }
 
@@ -119,6 +124,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Posty::findOrFail($id);
+        $post->delete();
+        return redirect()->route('posty.index')->with('message', 'Post został usunięty')->with('type', 'danger');
     }
 }

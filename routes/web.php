@@ -63,3 +63,7 @@ Route::post('/posty', function () {
     return view('posty.index');
 }); */
 Route::resource('posty', PostController::class);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

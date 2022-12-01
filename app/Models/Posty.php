@@ -9,4 +9,16 @@ class Posty extends Model
 {
     use HasFactory;
     protected $table = 'posty';
+    
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'tytul',
+        'autor',
+        'email',
+        'tresc',
+    ];
 }

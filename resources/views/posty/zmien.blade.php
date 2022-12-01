@@ -57,7 +57,8 @@
             @endforeach
     </div>
     @endif
-    <button type="submit" class="btn btn-primary">Zmień post</button>
+    <a href="{{ route('posty.index') }}"><button type="button" class="btn btn-primary m-1">Powrót do listy</button></a>
+    <button type="submit" class="btn btn-success">Zmień post</button>
   </form>
 @endsection
 
